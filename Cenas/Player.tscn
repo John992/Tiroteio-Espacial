@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://ccle4whnxyiph"]
+
+[ext_resource type="Texture2D" uid="uid://hyunkut4yn5d" path="res://Assets/Main Ship - Base - Damaged.png" id="1_jan6p"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_wwn82"]
+[ext_resource type="PackedScene" uid="uid://crgwat172p406" path="res://Cenas/projetil.tscn" id="2_222a1"]
+[ext_resource type="Texture2D" uid="uid://o4ihupp06ns2" path="res://Assets/Main Ship - Engines - Supercharged Engine - Powering.png" id="2_h67lv"]
+[ext_resource type="AudioStream" uid="uid://dg13dynamgnd" path="res://Sons/Laser Gun Sound Effect (mp3cut.net).mp3" id="5_7bc4j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uke21"]
+atlas = ExtResource("2_h67lv")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qc7eo"]
+atlas = ExtResource("2_h67lv")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51lhd"]
+atlas = ExtResource("2_h67lv")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrxud"]
+atlas = ExtResource("2_h67lv")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pa20e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uke21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qc7eo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51lhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrxud")
+}],
+"loop": true,
+"name": &"Turbina",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r0ce4"]
+radius = 24.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+position = Vector2(240, 677)
+script = ExtResource("1_wwn82")
+projetil = ExtResource("2_222a1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_jan6p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 3)
+sprite_frames = SubResource("SpriteFrames_pa20e")
+animation = &"Turbina"
+autoplay = "Turbina"
+frame_progress = 0.373844
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r0ce4")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -26)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7bc4j")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

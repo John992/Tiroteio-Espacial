@@ -1,0 +1,108 @@
+[gd_scene load_steps=16 format=3 uid="uid://ymas2i7nhd4x"]
+
+[ext_resource type="Script" path="res://Scripts/inimigo.gd" id="1_sylha"]
+[ext_resource type="Texture2D" uid="uid://cb6pbn2o55xtq" path="res://Assets/Main Ship - Engines - Base Engine.png" id="1_xabrb"]
+[ext_resource type="Texture2D" uid="uid://b2vd12obfauk1" path="res://Assets/Main Ship - Engines - Supercharged Engine - Spritesheet.png" id="2_gfcwv"]
+[ext_resource type="PackedScene" uid="uid://bscyhj26e5m61" path="res://Cenas/projetil_inimigo.tscn" id="2_yaa87"]
+[ext_resource type="AudioStream" uid="uid://csfg63a8gbo8d" path="res://Sons/EnemyLaser.mp3" id="4_yll2i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i857o"]
+atlas = ExtResource("2_gfcwv")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpid5"]
+atlas = ExtResource("2_gfcwv")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pygjg"]
+atlas = ExtResource("2_gfcwv")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxqxu"]
+atlas = ExtResource("2_gfcwv")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s8w6"]
+atlas = ExtResource("2_gfcwv")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpuoa"]
+atlas = ExtResource("2_gfcwv")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgle2"]
+atlas = ExtResource("2_gfcwv")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jijnj"]
+atlas = ExtResource("2_gfcwv")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fnv16"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i857o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpid5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pygjg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxqxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0s8w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpuoa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgle2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jijnj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j1ima"]
+radius = 20.0
+
+[node name="Inimigo" type="Area2D" groups=["Inimigo"]]
+position = Vector2(237, -2)
+script = ExtResource("1_sylha")
+projetil = ExtResource("2_yaa87")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_xabrb")
+flip_v = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_fnv16")
+autoplay = "default"
+frame_progress = 0.874084
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_j1ima")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, 8)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_yll2i")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

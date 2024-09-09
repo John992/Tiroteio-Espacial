@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv62yvn3kf5cm"]
+
+[ext_resource type="Script" path="res://Scripts/nivel.gd" id="1_aflv5"]
+[ext_resource type="PackedScene" uid="uid://c6d3thkts3qpg" path="res://Cenas/parallax_background.tscn" id="1_owbac"]
+[ext_resource type="PackedScene" uid="uid://ccle4whnxyiph" path="res://Cenas/Player.tscn" id="2_0wnhk"]
+[ext_resource type="PackedScene" uid="uid://ymas2i7nhd4x" path="res://Cenas/inimigo.tscn" id="2_gbg4a"]
+[ext_resource type="PackedScene" uid="uid://crnc8fvjuxgrv" path="res://Cenas/fimde_jogo.tscn" id="5_72qn5"]
+
+[node name="nivel" type="Node2D"]
+script = ExtResource("1_aflv5")
+inimigo = ExtResource("2_gbg4a")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_owbac")]
+
+[node name="Player" parent="." instance=ExtResource("2_0wnhk")]
+
+[node name="Surgimento" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Surgimento"]
+position = Vector2(24, -50)
+
+[node name="Marker2D2" type="Marker2D" parent="Surgimento"]
+position = Vector2(103, -50)
+
+[node name="Marker2D3" type="Marker2D" parent="Surgimento"]
+position = Vector2(177, -50)
+
+[node name="Marker2D4" type="Marker2D" parent="Surgimento"]
+position = Vector2(254, -50)
+
+[node name="Marker2D5" type="Marker2D" parent="Surgimento"]
+position = Vector2(347, -50)
+
+[node name="Marker2D6" type="Marker2D" parent="Surgimento"]
+position = Vector2(426, -50)
+
+[node name="Inimigos" type="Node2D" parent="."]
+
+[node name="Pontuacao" type="CanvasLayer" parent="."]
+
+[node name="Score" type="Label" parent="Pontuacao"]
+offset_left = 12.0
+offset_top = 9.0
+offset_right = 52.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 32
+text = "Score:"
+
+[node name="Pontos" type="Label" parent="Pontuacao"]
+offset_left = 109.0
+offset_top = 9.0
+offset_right = 149.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 32
+
+[node name="FimdeJogo" parent="." instance=ExtResource("5_72qn5")]
