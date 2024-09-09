@@ -18,21 +18,27 @@ inimigo = ExtResource("2_gbg4a")
 
 [node name="Marker2D" type="Marker2D" parent="Surgimento"]
 position = Vector2(24, -50)
+scale = Vector2(1.5, 1.5)
 
 [node name="Marker2D2" type="Marker2D" parent="Surgimento"]
 position = Vector2(103, -50)
+scale = Vector2(1.5, 1.5)
 
 [node name="Marker2D3" type="Marker2D" parent="Surgimento"]
 position = Vector2(177, -50)
+scale = Vector2(1.5, 1.5)
 
 [node name="Marker2D4" type="Marker2D" parent="Surgimento"]
 position = Vector2(254, -50)
+scale = Vector2(1.5, 1.5)
 
 [node name="Marker2D5" type="Marker2D" parent="Surgimento"]
 position = Vector2(347, -50)
+scale = Vector2(1.5, 1.5)
 
 [node name="Marker2D6" type="Marker2D" parent="Surgimento"]
 position = Vector2(426, -50)
+scale = Vector2(1.5, 1.5)
 
 [node name="Inimigos" type="Node2D" parent="."]
 
